@@ -1,0 +1,280 @@
+﻿<UserControl x:Class="Tema.View.Customers"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:Tema.ViewModel"
+             xmlns:local="clr-namespace:Tema.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="600"
+             d:DesignWidth="622"
+             Style="{StaticResource Page_Style}">
+    
+    <UserControl.DataContext>
+        <vm:CustomerVM />
+    </UserControl.DataContext>
+
+    <Grid Margin="15">
+
+        <Border CornerRadius="0,20,20,0">
+            <Border.Background>
+                <ImageBrush ImageSource="/Images/customer_page.png"
+                            Stretch="None" />
+            </Border.Background>
+        </Border>
+
+        <TextBlock Text="Customer ID  :"
+                   Foreground="#DBDBDB"
+                   FontSize="12"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   FontFamily="/Fonts/#Rubik Medium"
+                   Margin="70,138,0,0" />
+
+        <TextBlock Text="{Binding CustomerID}"
+                   Foreground="#CED565"
+                   FontSize="12"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   FontFamily="/Fonts/#Rubik Medium"
+                   Margin="160,138,0,0" />
+        
+        <TextBlock Text="Username  :"
+                   Foreground="#DBDBDB"
+                   FontSize="12"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   FontFamily="/Fonts/#Rubik Medium"
+                   Margin="70,198,0,0" />
+
+        <TextBlock Text="{Binding CustomerUsername}"
+                   Foreground="#CED565"
+                   FontSize="12"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   FontFamily="/Fonts/#Rubik Medium"
+                   Margin="150,198,0,0" />
+        
+        <TextBlock Text="Account type  :"
+                   Foreground="#DBDBDB"
+                   FontSize="12"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   FontFamily="/Fonts/#Rubik Medium"
+                   Margin="70,255,0,0" />
+
+        <TextBlock Text="{Binding CustomerAccType}"
+                   Foreground="#CED565"
+                   FontSize="12"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   FontFamily="/Fonts/#Rubik Medium"
+                   Margin="170,255,0,0" />
+
+        <TextBlock Text="Editeaza contul"
+                   Foreground="#DBDBDB"
+                   FontSize="18"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   FontFamily="/Fonts/#Rubik Medium"
+                   Margin="70,315,0,0" />
+
+        <TextBlock Text="Username nou:"
+            Foreground="#DBDBDB"
+            FontSize="12"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            FontFamily="/Fonts/#Rubik Medium"
+            Margin="75,360,0,0" />
+
+        <TextBox x:Name="txtCustomerUsernameNou"
+         Text="{Binding CustomerUsernameNou}"
+                             FontSize="12"
+                             FontWeight="Medium"
+                             FontFamily="/Fonts/#Rubik Medium"                            
+                             Foreground="White"
+                             CaretBrush="LightGray"
+                             BorderBrush="DarkGray"
+                             BorderThickness="0,0,0,2"
+                             Height="28"
+                             VerticalContentAlignment="Center"
+                             Margin="70,205,420,0">
+            <TextBox.Background>
+                <ImageBrush Stretch="None"
+                            AlignmentX="Left"/>
+            </TextBox.Background>
+        </TextBox>
+
+        <TextBlock Text="Parola noua:"
+            Foreground="#DBDBDB"
+            FontSize="12"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            FontFamily="/Fonts/#Rubik Medium"
+            Margin="248,360,0,0" />
+
+        <TextBox x:Name="txtCustomerParolaNoua"
+                 Text="{Binding CustomerParolaNoua}"
+                             FontSize="12"
+                             FontWeight="Medium"
+                             FontFamily="/Fonts/#Rubik Medium"                            
+                             Foreground="White"
+                             CaretBrush="LightGray"
+                             BorderBrush="DarkGray"
+                             BorderThickness="0,0,0,2"
+                             Height="28"
+                             VerticalContentAlignment="Center"
+                             Margin="240,205,250,0">
+            <TextBox.Background>
+                <ImageBrush Stretch="None"
+                            AlignmentX="Left"/>
+            </TextBox.Background>
+        </TextBox>
+
+        <TextBlock Text="Email nou:"
+            Foreground="#DBDBDB"
+            FontSize="12"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            FontFamily="/Fonts/#Rubik Medium"
+            Margin="420,360,0,0" />
+
+        <TextBox x:Name="txtCustomerEmailNou"
+                 Text="{Binding CustomerEmailNou}"
+                             FontSize="12"
+                             FontWeight="Medium"
+                             FontFamily="/Fonts/#Rubik Medium"                            
+                             Foreground="White"
+                             CaretBrush="LightGray"
+                             BorderBrush="DarkGray"
+                             BorderThickness="0,0,0,2"
+                             Height="28"
+                             VerticalContentAlignment="Center"
+                             Margin="400,205,90,0">
+            <TextBox.Background>
+                <ImageBrush Stretch="None"
+                            AlignmentX="Left"/>
+            </TextBox.Background>
+        </TextBox>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,430,0,60">
+            
+            <Button Content="Salvare date"
+                Command="{Binding SaveCommand}"
+                Foreground="White"
+                Background="#0890b3"
+                BorderBrush="#757575"
+                BorderThickness="1"
+                Margin="0,0,50,0"
+                Height="30"
+                Width="100">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal"/>
+                                        <VisualState x:Name="MouseOver">
+                                            <Storyboard>
+                                                <ColorAnimation Duration="0" To="#06788a" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <ColorAnimation Duration="0" To="#03445a" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Disabled"/>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="15">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+            </Button>
+
+
+
+            <!-- Buton de Delogare -->
+           <!--<Button Content="Delogare"
+                Command="{Binding LogoutCommand}"
+                Foreground="White"
+                Background="#0890b3"
+                BorderBrush="#757575"
+                BorderThickness="1"
+                Padding="10,5"
+                Margin="0,0,50,0"
+                Height="30"
+                Width="100">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#06788a" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#03445a" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="15">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>-->
+
+            <!-- Buton de Ștergere cont -->
+            <Button Content="Stergere cont"
+                Command="{Binding DeleteAccountCommand}"
+                Foreground="White"
+                Background="#B12123"
+                BorderBrush="#757575"
+                BorderThickness="1"
+                Padding="10,5"
+                Height="30"
+                Width="100">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#8a1214" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#66090b" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="15">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <!-- Al patrulea buton... -->
+        </StackPanel>
+
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,193 @@
+﻿<Window x:Class="Tema.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tema"
+        xmlns:vm="clr-namespace:Tema.ViewModel"
+        xmlns:Menu="clr-namespace:Tema.Utilities" d:DataContext="{d:DesignInstance Type=vm:GroceriesVM}"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="600"
+        Width="850"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent">
+       
+    <Window.DataContext>
+        <vm:NavigationVM />
+    </Window.DataContext>
+
+    <Window.Resources>
+        <vm:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+
+
+    <Grid>
+
+        <Border Background="#212529"
+                CornerRadius="20" />
+
+        <Grid>
+
+            
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="228" />
+                <ColumnDefinition Width="622" />
+            </Grid.ColumnDefinitions>
+
+
+            <!--// Navigation Panel //-->
+
+            <Grid HorizontalAlignment="Left"
+                  Width="228">
+
+                <Border Background="#135058"
+                        CornerRadius="20,0,0,20" />
+
+                <StackPanel Height="400"
+                            Width="228">
+
+                    <!--// Home //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding HomeCommand}"
+                              IsChecked="True">
+
+                        <Grid>
+
+                            <Image Source="Images/img_home.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Home"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Customer //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding CustomersCommand}">
+
+                        <Grid>
+
+                            <Image Source="Images/img_customer.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Customer"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Meals Plans //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding Meals_plansCommand}">
+
+                        <Grid>
+
+                            <Image Source="Images/img_product.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Meals Plans"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Groceries//-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding GroceriesCommand}">
+
+                        <Grid>
+
+                            <Image Source="Images/img_order.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Groceries"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Recipes //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding RecipesCommand}">
+
+                        <Grid>
+
+                            <Image Source="Images/img_transaction.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Recipes"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Tracking //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding TrackingCommand}">
+
+                        <Grid>
+
+                            <Image Source="Images/img_shipment.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Tracking"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Settings //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding SettingsCommand}"
+                              Visibility="{Binding IsAdminButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <Grid>
+
+                            <Image Source="Images/img_setting.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Settings"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                </StackPanel>
+
+            </Grid>
+
+            <Grid Grid.Column="1">
+
+                <ContentControl x:Name="Pages"
+                                Content="{Binding CurrentView}" />
+
+            </Grid>
+
+        </Grid>
+
+        <Button x:Name="CloseApp"
+                Style="{StaticResource ExitApp}"
+                Click="CloseApp_Click" />
+
+    </Grid>
+
+</Window>

@@ -1,0 +1,142 @@
+﻿<UserControl x:Class="Tema.View.Meals_plans"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:local="clr-namespace:Tema.View"
+             xmlns:vm="clr-namespace:Tema.ViewModel"
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="622"
+             Style="{StaticResource Page_Style}">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+
+        <Style x:Key="buyButton" TargetType="Button">
+            <Setter Property="Background" Value="#4e565d"/>
+            <Setter Property="BorderBrush" Value="#212529"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="5" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Green"/>
+                    <Setter Property="BorderBrush" Value="LightGreen"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <Style x:Key="showinfoButton" TargetType="Button">
+            <Setter Property="Background" Value="#4e565d"/>
+            <Setter Property="BorderBrush" Value="#212529"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="5" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#D3D3D3"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="gridButtonIcon" TargetType="Icon:PackIconMaterial">
+            <Setter Property="Width" Value="12"/>
+            <Setter Property="Height" Value="12"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="13*"/>
+            <RowDefinition Height="137*"/>
+        </Grid.RowDefinitions>
+
+        <Border CornerRadius="0,20,20,0" Margin="0,5,5,0" Grid.RowSpan="2">
+
+            <Image Source="/Images/home_page.png"
+           Stretch="Fill" RenderTransformOrigin="0.516,0.043" />
+
+        </Border>
+
+        <!-- Main section -->
+        <Grid Margin="30 20 20 20" Grid.RowSpan="2" RenderTransformOrigin="0.502,0.017">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
+
+        <!-- Separator -->
+        <Separator Background="#dae2ea" Margin="0,0,0,542" Grid.Row="1"/>
+        <!-- Meals datagrid -->
+        <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" x:Name="recipesDataGrid" SelectionChanged="recipesDataGrid_SelectionChanged" RenderTransformOrigin="0.517,-0.053">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Meal type" IsReadOnly="True" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}" HorizontalAlignment="Center">
+                                    <TextBlock Text="{Binding meal_type}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
+                                </Border>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="#ID" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding mealId}"/>
+                <DataGridTextColumn Header="Date" IsReadOnly="True" Width="*" Binding="{Binding data}"/>
+                <DataGridTextColumn Header="Views" IsReadOnly="True" Width="*" Binding="{Binding views}"/>
+
+
+                <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource buyButton}" Margin="5 0 0 0" Click="buyButtonClick">
+                                    <Icon:PackIconMaterial Kind="CurrencyUsd" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+
+                                <Button Style="{StaticResource showinfoButton}" Margin="5 0 0 0" Click="infoButtonClick">
+                                    <Icon:PackIconMaterial Kind="DotsHorizontal"  Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Content="Meals plans" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"
+        Foreground="#ffffff" FontSize="22" FontWeight="Bold"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,190 @@
+﻿<UserControl x:Class="Tema.View.Home"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Tema.View"
+             xmlns:vm="clr-namespace:Tema.ViewModel"
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="622"
+             Style="{StaticResource Page_Style}">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+
+        <Style x:Key="starButton" TargetType="Button">
+            <Setter Property="Background" Value="#4e565d"/>
+            <Setter Property="BorderBrush" Value="#212529"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="5" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding fav}" Value="True">
+                    <Setter Property="Background" Value="#ebd726"/>
+                    <Setter Property="BorderBrush" Value="LightYellow"/>
+                </DataTrigger>
+
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#8f8b66"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <Style x:Key="showinfoButton" TargetType="Button">
+            <Setter Property="Background" Value="#4e565d"/>
+            <Setter Property="BorderBrush" Value="#212529"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="5" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#D3D3D3"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="gridButtonIcon" TargetType="Icon:PackIconMaterial">
+            <Setter Property="Width" Value="12"/>
+            <Setter Property="Height" Value="12"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="13*"/>
+            <RowDefinition Height="137*"/>
+        </Grid.RowDefinitions>
+
+        <Border CornerRadius="0,20,20,0" Margin="0,5,5,0" Grid.RowSpan="2">
+
+            <Image Source="/Images/home_page.png"
+                   Stretch="Fill" RenderTransformOrigin="0.516,0.043" />
+
+        </Border>
+
+        <!-- Main section -->
+        <Grid Margin="30 20 20 20" Grid.RowSpan="2" RenderTransformOrigin="0.502,0.017">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
+
+        <!-- Search textBox -->
+        <Grid Width="300" HorizontalAlignment="Left" Grid.RowSpan="2">
+            <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
+                       Panel.ZIndex="1" Text="Search ..."
+                       Visibility="{Binding ElementName=txtSearch,Path=Text ,Converter={StaticResource BoolToVis}}"/>
+
+            <TextBox x:Name="txtSearch" RenderTransformOrigin="0.473,-3.473" Margin="10,10,-10,0" VerticalAlignment="Top" Height="38">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Background" Value="#ffffff"/>
+                        <Setter Property="Foreground" Value="#b0b9c6"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="Padding" Value="15 10"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Margin" Value="0 10"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TextBox">
+                                    <Border x:Name="border" CornerRadius="20" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"
+                                            BorderThickness="1" BorderBrush="#e0e6ed">
+                                        <ScrollViewer x:Name="PART_ContentHost" HorizontalScrollBarVisibility="Hidden"
+                                                      VerticalScrollBarVisibility="Hidden"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="BorderBrush" Value="#d9d9d9" TargetName="border"/>
+                                        </Trigger>
+
+                                        <Trigger Property="IsKeyboardFocused" Value="true">
+                                            <Setter Property="BorderBrush" Value="#d9d9d9" TargetName="border" />
+                                        </Trigger>
+
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+
+            <Button BorderBrush="White" Background="White" Margin="276,14,0,556" RenderTransformOrigin="-0.592,-5.24" Click="searchClickButton">
+                <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="30" Foreground ="#b0b9c6"/>
+            </Button>
+        </Grid>
+
+        <!-- Separator -->
+        <Separator Background="#dae2ea" Margin="0,0,0,542" Grid.Row="1"/>
+        <!-- REceipes datagrid -->
+        <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" x:Name="recipesDataGrid" SelectionChanged="recipesDataGrid_SelectionChanged" RenderTransformOrigin="0.517,-0.053">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="NUTBAL" IsReadOnly="True" Width="75">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}" HorizontalAlignment="Center">
+                                    <TextBlock Text="{Binding kcalBalance}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
+                                </Border>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="#ID" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding receipeId}"/>
+                <DataGridTextColumn Header="Receipe name" IsReadOnly="True" Width="auto" Binding="{Binding receipeName}"/>
+                <DataGridTextColumn Header="Preparation time ~" IsReadOnly="True" Width="auto" Binding="{Binding cockTime}"/>
+                <DataGridTextColumn Header="Rating" IsReadOnly="True" Width="auto" Binding="{Binding rating}"/>
+
+
+                <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource starButton}" Margin="5 0 0 0" Click="favoriteButtonClick">
+                                    <Icon:PackIconMaterial Kind="Star" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+
+                                <Button Style="{StaticResource showinfoButton}" Margin="5 0 0 0" Click="receipeDetailesButton">
+                                    <Icon:PackIconMaterial Kind="DotsHorizontal"  Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

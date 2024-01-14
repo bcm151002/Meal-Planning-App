@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="Tema.View.Tracking"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Tema.View"
+             xmlns:vm="clr-namespace:Tema.ViewModel"
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="622"
+             Style="{StaticResource Page_Style}">
+
+
+    <UserControl.DataContext>
+        <vm:TrackingVM />
+    </UserControl.DataContext>
+
+    <Grid Margin="15">
+
+        <Border CornerRadius="0,20,20,0">
+            <Border.Background>
+                <ImageBrush ImageSource="/Images/tracking_page.png"
+                            Stretch="None" />
+            </Border.Background>
+        </Border>
+
+        <Grid>
+
+            <TextBlock Text="{Binding KCAmount}"
+                       Foreground="#CED565"
+                       FontSize="25"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       FontFamily="/Fonts/#Rubik Medium"
+                       Margin="334,245,0,0" />
+
+            <TextBlock Text="{Binding RecypesAmount}"
+                Foreground="#CED565"
+                FontSize="25"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontFamily="/Fonts/#Rubik Medium"
+                Margin="70,245,0,0" />
+
+            <TextBlock Text="{Binding ProteinAmount}"
+                Foreground="#CED565"
+                FontSize="25"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontFamily="/Fonts/#Rubik Medium"
+                Margin="70,415,0,0" />
+
+            <TextBlock Text="{Binding CarhobydratesAmount}"
+                Foreground="#CED565"
+                FontSize="25"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontFamily="/Fonts/#Rubik Medium"
+                Margin="334,415,0,0"/>
+
+        </Grid>
+
+    </Grid>
+</UserControl>
